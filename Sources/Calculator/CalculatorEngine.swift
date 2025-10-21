@@ -4,6 +4,8 @@ import Observation
 @MainActor @Observable
 final class CalculatorEngine {
     var rows: [Row]
+    var modifiedDate: Date = .distantPast
+    var error: CalculatorError?
 
     var requests: [Request] {
         didSet {
@@ -12,6 +14,7 @@ final class CalculatorEngine {
             } else {
                 .command(.allClear)
             }
+            modifiedDate = .now
         }
     }
 
@@ -24,8 +27,6 @@ final class CalculatorEngine {
             requests.map(String.init(describing:)).joined()
         }
     }
-
-    var error: CalculatorError?
 
     init() {
         rows = [
@@ -61,6 +62,15 @@ final class CalculatorEngine {
             ]),
         ]
         requests = []
+    }
+
+    func setValue(_ value: String) {
+        requests = if let decimalValue = Decimal(string: value) {
+            .init(decimalValue: decimalValue)
+        } else {
+            []
+        }
+        error = nil
     }
 
     func onTap(_ role: Role) {

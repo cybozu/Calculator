@@ -7,19 +7,18 @@ enum Command: String {
     case clear
     case delete
 
-    @ViewBuilder
-    var body: some View {
+    var text: Text {
         switch self {
         case .plusMinus:
-            Image(systemName: "plus.slash.minus")
+            Text(Image(systemName: "plus.slash.minus"))
         case .calculate:
-            Image(systemName: "equal")
+            Text(Image(systemName: "equal"))
         case .allClear:
             Text(verbatim: "AC")
         case .clear:
             Text(verbatim: "C")
         case .delete:
-            Image(systemName: "delete.backward")
+            Text(Image(systemName: "delete.backward"))
         }
     }
 }

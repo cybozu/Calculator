@@ -6,17 +6,16 @@ enum Role {
     case `operator`(Operator)
     case command(Command)
 
-    @ViewBuilder
-    var body: some View {
+    var text: Text {
         switch self {
         case let .number(value):
             Text(String(describing: value))
         case .period:
             Text(verbatim: ".")
         case let .operator(value):
-            value.image
+            Text(value.image)
         case let .command(value):
-            value.body
+            value.text
         }
     }
 
