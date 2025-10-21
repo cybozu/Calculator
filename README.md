@@ -8,7 +8,7 @@ Calculator is a Swift package that provides an inline calculator with SwiftUI AP
 
 - Development with Xcode 26.0+
 - Written in Swift 6.2
-- Compatible with iOS 26.0+
+- Compatible with iOS 26.0+, macOS 15.0+
 
 ## Usage
 
