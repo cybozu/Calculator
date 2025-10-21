@@ -7,9 +7,9 @@ enum Request: CustomStringConvertible, Equatable {
     var description: String {
         switch self {
         case let .term(value):
-            value.description
+            String(describing: value)
         case let .operator(value):
-            value.description
+            String(describing: value)
         }
     }
 }

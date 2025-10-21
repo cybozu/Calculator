@@ -3,9 +3,9 @@
 extension [Digit] {
     init(doubleValue: Double) {
         self = if abs(doubleValue.truncatingRemainder(dividingBy: 1)).isLess(than: .ulpOfOne) {
-            Int(doubleValue).description.compactMap(Digit.init)
+            String(describing: Int(doubleValue)).compactMap(Digit.init)
         } else {
-            doubleValue.description.compactMap(Digit.init)
+            String(describing: doubleValue).compactMap(Digit.init)
         }
     }
 }

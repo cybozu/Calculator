@@ -20,7 +20,7 @@ extension Digit {
         case ".":
             self = .period
         case ("0"..."9"):
-            self = .number(Int(character.description)!)
+            self = .number(Int(String(describing: character))!)
         default:
             return nil
         }
@@ -29,6 +29,6 @@ extension Digit {
 
 extension [Digit] {
     init(decimalValue: Decimal) {
-        self = decimalValue.description.compactMap(Digit.init)
+        self = String(describing: decimalValue).compactMap(Digit.init)
     }
 }

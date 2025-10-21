@@ -21,7 +21,7 @@ final class CalculatorEngine {
         } else if requests.isEmpty {
             "0"
         } else {
-            requests.map(\.description).joined()
+            requests.map(String.init(describing:)).joined()
         }
     }
 

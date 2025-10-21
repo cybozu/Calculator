@@ -10,7 +10,7 @@ enum Role {
     var body: some View {
         switch self {
         case let .number(value):
-            Text(value.description)
+            Text(String(describing: value))
         case .period:
             Text(verbatim: ".")
         case let .operator(value):

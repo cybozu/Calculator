@@ -4,7 +4,7 @@ struct Term: CustomStringConvertible, Equatable {
     var digits: [Digit]
 
     var description: String {
-        digits.map(\.description).joined()
+        digits.map(String.init(describing:)).joined()
     }
 
     var decimalValue: Decimal? {
