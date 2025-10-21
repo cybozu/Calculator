@@ -2,6 +2,8 @@
 
 Calculator is a Swift package that provides an inline calculator with SwiftUI API.
 
+<img width="355" height="355" src="https://github.com/user-attachments/assets/a013d3ab-ff6b-4b8e-83eb-964d1e0f826b" />
+
 ## Requirements
 
 - Development with Xcode 26.0+
@@ -12,6 +14,15 @@ Calculator is a Swift package that provides an inline calculator with SwiftUI AP
 
 ```swift
 import Calculator
+import SwiftUI
+
+struct ContentView: View {
+    @State var value: String = ""
+
+    var body: some View {
+        Calculator(value: $value)
+    }
+}
 ```
 
 ## Privacy Manifest
