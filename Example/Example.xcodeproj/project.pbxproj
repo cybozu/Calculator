@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		189305672EA7528900950EA4 /* Calculator in Frameworks */ = {isa = PBXBuildFile; productRef = 189305662EA7528900950EA4 /* Calculator */; };
+		189305752EA7541800950EA4 /* Calculator.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 189305742EA7541800950EA4 /* Calculator.xctestplan */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,6 +25,7 @@
 		1893053A2EA7519900950EA4 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		189305512EA7519B00950EA4 /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		189305642EA751E500950EA4 /* Calculator */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Calculator; path = ..; sourceTree = "<group>"; };
+		189305742EA7541800950EA4 /* Calculator.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Calculator.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -61,6 +63,7 @@
 		189305312EA7519900950EA4 = {
 			isa = PBXGroup;
 			children = (
+				189305742EA7541800950EA4 /* Calculator.xctestplan */,
 				189305642EA751E500950EA4 /* Calculator */,
 				1893053C2EA7519900950EA4 /* Example */,
 				189305542EA7519B00950EA4 /* ExampleUITests */,
@@ -179,6 +182,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				189305752EA7541800950EA4 /* Calculator.xctestplan in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
