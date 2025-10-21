@@ -30,10 +30,8 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:Example/Calculator.xctestplan">
-         </TestPlanReference>
-         <TestPlanReference
-            reference = "container:Calculator.xctestplan">
+            reference = "container:Calculator.xctestplan"
+            default = "YES">
          </TestPlanReference>
       </TestPlans>
       <Testables>
