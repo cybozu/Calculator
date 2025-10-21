@@ -92,7 +92,6 @@ final class CalculatorEngine {
                 requests.append(.term(.init(digits: [.number(input)])))
             }
         }
-        requests.expired()
     }
 
     private func handlePeriod() {
@@ -106,7 +105,6 @@ final class CalculatorEngine {
         case .operator, .none:
             requests.append(.term(.init(digits: [.number(0), .period])))
         }
-        requests.expired()
     }
 
     private func handle(operator input: Operator) {
@@ -144,7 +142,6 @@ final class CalculatorEngine {
             }
             requests.append(.operator(input))
         }
-        requests.expired()
     }
 
     private func handle(command input: Command) {
@@ -186,7 +183,6 @@ final class CalculatorEngine {
             case .none: // term
                 requests.insert(.operator(.subtraction), at: 0)
             }
-            requests.expired()
         case .calculate:
             do {
                 guard let result = try requests.calculated() else {
