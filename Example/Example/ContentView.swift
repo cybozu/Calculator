@@ -13,8 +13,6 @@ struct ContentView: View {
 
     var body: some View {
         Calculator(value: $value)
-            .border(Color.red)
-            .padding()
     }
 }
 

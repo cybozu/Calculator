@@ -64,9 +64,10 @@ public struct Calculator: View {
                 }
             }
         }
-        .padding(8)
+        .padding(16)
+        .background(Color(.secondarySystemBackground), in: .rect(cornerRadius: 16))
         .fixedSize()
         .accessibilityElement(children: .contain)
-        .accessibilityIdentifier("calcPicker")
+        .accessibilityIdentifier("calculator")
     }
 }
