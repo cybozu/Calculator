@@ -28,7 +28,7 @@ jobs:
       - name: Run Unit Tests
         run: |
           xcodebuild test \
-            -scheme CalcPicker \
+            -scheme Calculator \
             -destination "platform=macOS,arch=arm64" \
             -derivedDataPath DerivedData \
             -resultBundlePath TestResults/unit_test_result_bundle | \
