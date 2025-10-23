@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct Row: Identifiable {
-    var id = UUID()
-    var cells: [Cell]
+public struct Row: Identifiable {
+    public var id = UUID()
+    public var cells: [Cell]
 }

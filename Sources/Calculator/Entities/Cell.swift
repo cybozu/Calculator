@@ -1,7 +1,7 @@
 import SwiftUI
 
-struct Cell: Identifiable {
-    var id = UUID()
-    var area: Area
-    var role: Role
+public struct Cell: Identifiable {
+    public var id = UUID()
+    public var area: Area
+    public var role: Role
 }

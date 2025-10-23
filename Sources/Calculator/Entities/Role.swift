@@ -1,12 +1,12 @@
 import SwiftUI
 
-enum Role {
+public enum Role {
     case number(Int)
     case period
     case `operator`(Operator)
     case command(Command)
 
-    var text: Text {
+    public var text: Text {
         switch self {
         case let .number(value):
             Text(String(describing: value))

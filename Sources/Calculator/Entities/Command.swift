@@ -1,13 +1,13 @@
 import SwiftUI
 
-enum Command: String {
+public enum Command: String, CaseIterable {
     case plusMinus
     case calculate
     case allClear
     case clear
     case delete
 
-    var text: Text {
+    public var text: Text {
         switch self {
         case .plusMinus:
             Text(Image(systemName: "plus.slash.minus"))

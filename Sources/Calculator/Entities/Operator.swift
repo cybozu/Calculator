@@ -1,13 +1,13 @@
 import SwiftUI
 
-enum Operator: String, CustomStringConvertible {
+public enum Operator: String, CaseIterable, CustomStringConvertible {
     case addition
     case subtraction
     case multiplication
     case division
     case modulus
 
-    var description: String {
+    public var description: String {
         switch self {
         case .addition:
             "+"
@@ -22,7 +22,7 @@ enum Operator: String, CustomStringConvertible {
         }
     }
 
-    var image: Image {
+    public var image: Image {
         switch self {
         case .addition:
             Image(systemName: "plus")

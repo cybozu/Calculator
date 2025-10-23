@@ -1,6 +1,6 @@
 import SwiftUI
 
-enum Area {
+public enum Area {
     case main
     case upperSide
     case rightSide
