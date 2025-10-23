@@ -1,9 +1,19 @@
 import SwiftUI
 
-public enum Area {
+enum Area {
     case main
     case upperSide
     case rightSide
+
+    init(rowIndex: Int, rowLast: Bool) {
+        self = if rowIndex == .zero {
+            .upperSide
+        } else if rowLast {
+            .rightSide
+        } else {
+            .main
+        }
+    }
 
     var color: Color {
         switch self {

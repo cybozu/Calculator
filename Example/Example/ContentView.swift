@@ -13,6 +13,7 @@ struct ContentView: View {
 
     var body: some View {
         Calculator(value: $value)
+//            .calculatorStyle(.classic(buttonBorderShape: .roundedRectangle))
     }
 }
 
