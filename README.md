@@ -2,7 +2,7 @@
 
 Calculator is a Swift package that provides an inline calculator with SwiftUI API.
 
-<img width="355" height="355" src="https://github.com/user-attachments/assets/a013d3ab-ff6b-4b8e-83eb-964d1e0f826b" />
+<img width="355" height="355" src="https://github.com/user-attachments/assets/e2f37975-b820-48c2-b7ba-0064249b9a86" />
 
 ## Requirements
 
@@ -21,6 +21,10 @@ struct ContentView: View {
 
     var body: some View {
         Calculator(value: $value)
+            .calculatorStyle(.classic(
+                buttonFontSize: 32,
+                buttonBorderShape: .roundedRectangle
+            ))
     }
 }
 ```
