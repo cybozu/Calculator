@@ -50,7 +50,10 @@ public struct Calculator: View {
             .fixedSize()
             .background {
                 GeometryReader { proxy in
-                    Color.clear.preference(key: WidthPreferenceKey.self, value: proxy.size.width)
+                    Color.clear.preference(
+                        key: WidthPreferenceKey.self,
+                        value: proxy.size.width
+                    )
                 }
             }
             .onPreferenceChange(WidthPreferenceKey.self) { value in

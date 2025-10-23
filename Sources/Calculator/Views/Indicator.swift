@@ -4,8 +4,7 @@ struct Indicator: View {
     var expression: String
     var fontSize: Double
     var width: Double
-
-    @State private var scrollPlace = ScrollPlace.fit
+    @State private var textFrame = CGRect.zero
 
     var body: some View {
         ScrollViewReader { proxy in
@@ -19,21 +18,21 @@ struct Indicator: View {
                     .background {
                         GeometryReader { proxy in
                             Color.clear.preference(
-                                key: ScrollPlacePreferenceKey.self,
-                                value: ScrollPlace(width: width, frame: proxy.frame(in: .named("scroll")))
+                                key: TextFramePreferenceKey.self,
+                                value: proxy.frame(in: .named("scroll"))
                             )
+                        }
+                    }
+                    .onPreferenceChange(TextFramePreferenceKey.self) { value in
+                        MainActor.assumeIsolated {
+                            textFrame = value
                         }
                     }
             }
             .scrollBounceBehavior(.basedOnSize, axes: .horizontal)
             .frame(width: width)
-            .mask(scrollPlace.mask)
+            .mask(ScrollPlace(width: width, frame: textFrame).mask)
             .coordinateSpace(name: "scroll")
-            .onPreferenceChange(ScrollPlacePreferenceKey.self) { value in
-                MainActor.assumeIsolated {
-                    scrollPlace = value
-                }
-            }
             .onChange(of: expression) { _, newValue in
                 proxy.scrollTo("expression", anchor: .trailing)
             }
