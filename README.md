@@ -12,6 +12,8 @@ Calculator is a Swift package that provides an inline calculator with SwiftUI AP
 
 ## Usage
 
+If you want to use the classic preset calculator:
+
 ```swift
 import Calculator
 import SwiftUI
@@ -25,6 +27,51 @@ struct ContentView: View {
                 buttonFontSize: 32,
                 buttonBorderShape: .roundedRectangle
             ))
+    }
+}
+```
+
+If you want to create your own preferred calculator interface:
+
+```swift
+import Calculator
+import SwiftUI
+
+struct CustomCalculatorStyle: CalculatorStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        VStack {
+            Text(configuration.value)
+                .frame(maxWidth: .infinity, alignment: .trailing)
+                .padding(4)
+                .background(Color(.separator), in: .rect(cornerRadius: 8))
+            ForEach(configuration.rows) { row in
+                HStack {
+                    ForEach(row.cells) { cell in
+                        Button {
+                            configuration.trigger(cell.role)
+                        } label: {
+                            cell.role.text
+                                .frame(width: 40, height: 32)
+                        }
+                        .buttonStyle(.borderedProminent)
+                    }
+                }
+            }
+        }
+        .fixedSize()
+    }
+}
+
+extension CalculatorStyle where Self == CustomCalculatorStyle {
+    static var custom: CustomCalculatorStyle { .init() }
+}
+
+struct ContentView: View {
+    @State var value: String = ""
+
+    var body: some View {
+        Calculator(value: $value)
+            .calculatorStyle(.custom)
     }
 }
 ```
