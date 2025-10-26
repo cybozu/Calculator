@@ -2,7 +2,7 @@
 
 Calculator is a Swift package that provides an inline calculator with SwiftUI API.
 
-<img width="355" height="355" src="https://github.com/user-attachments/assets/e2f37975-b820-48c2-b7ba-0064249b9a86" />
+<img width="352" height="352" src="https://github.com/user-attachments/assets/2fd08868-84b2-4ff0-82a3-ef46be32986e" />
 
 ## Requirements
 
