@@ -1,6 +1,6 @@
 import SwiftUI
 
-public enum Operator: String, CaseIterable, CustomStringConvertible {
+public enum Operator: String, Sendable, CaseIterable, CustomStringConvertible {
     case addition
     case subtraction
     case multiplication

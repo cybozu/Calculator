@@ -1,6 +1,6 @@
 import SwiftUI
 
-public enum Role {
+public enum Role: Sendable {
     case number(Int)
     case period
     case `operator`(Operator)

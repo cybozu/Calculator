@@ -1,6 +1,6 @@
 import SwiftUI
 
-public enum Command: String, CaseIterable {
+public enum Command: String, Sendable, CaseIterable {
     case plusMinus
     case calculate
     case allClear

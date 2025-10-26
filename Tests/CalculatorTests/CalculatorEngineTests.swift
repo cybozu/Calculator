@@ -1015,7 +1015,7 @@ struct CalculatorEngineTests {
     }
 }
 
-struct OnTapCondition {
+struct OnTapCondition: Sendable {
     var role: Role
     var premiseRequests = [Request]()
     var expectedRequests: [Request]
