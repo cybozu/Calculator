@@ -12,17 +12,17 @@ enum Request: CustomStringConvertible, Equatable {
             String(describing: value)
         }
     }
-}
 
-extension [Request] {
-    var isClear: Bool {
-        if case .term = last {
+    var isTerm: Bool {
+        if case .term = self {
             true
         } else {
             false
         }
     }
+}
 
+extension [Request] {
     init(decimalValue: Decimal) {
         self = if decimalValue.isSignMinus {
             [.operator(.subtraction)]
@@ -75,8 +75,10 @@ extension [Request] {
         return SignedTerm(value: -value, cost: 2)
     }
 
-    func calculated() throws -> [Request]? {
-        guard count > 2 else { return nil }
+    func calculated() throws -> [Request] {
+        guard count > 2 else {
+            throw CalculatorError.invalidFormula
+        }
         var copy = self
 
         let operations: [Operation] = [
@@ -111,7 +113,7 @@ extension [Request] {
             while copy.count > 2, let index = copy.firstOperatorIndex(where: { $0 == .operator(operation.operator) }) {
                 guard let beforeSignedTerm = copy.signedTerm(before: index),
                       let afterSignedTerm = copy.signedTerm(after: index) else {
-                    return nil
+                    throw CalculatorError.invalidFormula
                 }
                 if operation.needsZeroValidation {
                     guard !afterSignedTerm.value.isZero else {

@@ -5,32 +5,6 @@ import Testing
 struct RequestTests {
     @Test(arguments: [
         .init(
-            requests: [.term(.init(1))],
-            expectedIsClear: true
-        ),
-        .init(
-            requests: [.operator(.subtraction), .term(.init(1))],
-            expectedIsClear: true
-        ),
-        .init(
-            requests: [.operator(.subtraction)],
-            expectedIsClear: false
-        ),
-        .init(
-            requests: [.term(.init(1)), .operator(.addition)],
-            expectedIsClear: false
-        ),
-        .init(
-            requests: [.term(.init(1)), .operator(.addition), .term(.init(1))],
-            expectedIsClear: true
-        ),
-    ] as [IsClearCondition])
-    func isClear(_ condition: IsClearCondition) {
-        #expect(condition.requests.isClear == condition.expectedIsClear)
-    }
-
-    @Test(arguments: [
-        .init(
             decimalValue: 0,
             expectedRequests: [.term(.init(0))]
         ),
@@ -183,22 +157,6 @@ struct RequestTests {
 
     @Test(arguments: [
         .init(
-            requests: [],
-            expectedRequests: nil
-        ),
-        .init(
-            requests: [.term(.init(1))],
-            expectedRequests: nil
-        ),
-        .init(
-            requests: [.operator(.subtraction)],
-            expectedRequests: nil
-        ),
-        .init(
-            requests: [.operator(.subtraction), .term(.init(1))],
-            expectedRequests: nil
-        ),
-        .init(
             requests: [.term(.init(1)), .operator(.addition), .term(.init(1))],
             expectedRequests: [.term(.init(2))]
         ),
@@ -242,16 +200,40 @@ struct RequestTests {
 
     @Test(arguments: [
         .init(
+            requests: [],
+            expectedError: .invalidFormula
+        ),
+        .init(
+            requests: [.term(.init(1))],
+            expectedError: .invalidFormula
+        ),
+        .init(
+            requests: [.operator(.subtraction)],
+            expectedError: .invalidFormula
+        ),
+        .init(
+            requests: [.operator(.subtraction), .term(.init(1))],
+            expectedError: .invalidFormula
+        ),
+        .init(
+            requests: [.term(.init(1)), .operator(.addition)],
+            expectedError: .invalidFormula
+        ),
+        .init(
+            requests: [.term(.init(1)), .operator(.multiplication), .operator(.division)],
+            expectedError: .invalidFormula
+        ),
+        .init(
             requests: [.term(.init(1)), .operator(.division), .term(.init(0))],
-            expectedRequests: []
+            expectedError: .undefined
         ),
         .init(
             requests: [.term(.init(1)), .operator(.modulus), .term(.init(0))],
-            expectedRequests: []
+            expectedError: .undefined
         ),
-    ] as [CalculatedCondition])
-    func calculated_taboo(_ condition: CalculatedCondition) throws {
-        #expect(throws: CalculatorError.undefined) {
+    ] as [ErrorCondition])
+    func calculated_error(_ condition: ErrorCondition) throws {
+        #expect(throws: condition.expectedError) {
             try condition.requests.calculated()
         }
     }
@@ -323,11 +305,6 @@ struct RequestTests {
     }
 }
 
-struct IsClearCondition {
-    var requests: [Request]
-    var expectedIsClear: Bool
-}
-
 struct RequestsCondition {
     var decimalValue: Decimal
     var expectedRequests: [Request]
@@ -349,4 +326,9 @@ struct SignedTermCondition {
 struct CalculatedCondition {
     var requests: [Request]
     var expectedRequests: [Request]?
+}
+
+struct ErrorCondition {
+    var requests: [Request]
+    var expectedError: CalculatorError
 }

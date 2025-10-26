@@ -4,16 +4,17 @@ import Observation
 @MainActor @Observable
 final class CalculatorEngine {
     var rows: [Row]
-    var modifiedDate: Date = .distantPast
+    var modifiedDate = Date.distantPast
     var error: CalculatorError?
+
+    var isClear: Bool {
+        didSet {
+            rows[0].cells[1].role = .command(isClear ? .clear : .allClear)
+        }
+    }
 
     var requests: [Request] {
         didSet {
-            rows[0].cells[1].role = if error == nil, requests.isClear {
-                .command(.clear)
-            } else {
-                .command(.allClear)
-            }
             modifiedDate = .now
         }
     }
@@ -61,10 +62,12 @@ final class CalculatorEngine {
                 .init(role: .command(.calculate)),
             ]),
         ]
+        isClear = false
         requests = []
     }
 
     func setValue(_ value: String) {
+        isClear = false
         requests = if let decimalValue = Decimal(string: value) {
             .init(decimalValue: decimalValue)
         } else {
@@ -97,10 +100,10 @@ final class CalculatorEngine {
             requests[requests.count - 1] = .term(value)
         case .operator:
             requests.append(.term(.init(digits: [.number(input)])))
+            isClear = true
         case .none:
-            if input != .zero {
-                requests.append(.term(.init(digits: [.number(input)])))
-            }
+            requests.append(.term(.init(digits: [.number(input)])))
+            isClear = true
         }
     }
 
@@ -114,6 +117,7 @@ final class CalculatorEngine {
             requests[requests.count - 1] = .term(value)
         case .operator, .none:
             requests.append(.term(.init(digits: [.number(0), .period])))
+            isClear = true
         }
     }
 
@@ -149,6 +153,7 @@ final class CalculatorEngine {
         case .none:
             if input != .subtraction {
                 requests.append(.term(.init(digits: [.number(0)])))
+                isClear = true
             }
             requests.append(.operator(input))
         }
@@ -195,13 +200,17 @@ final class CalculatorEngine {
             }
         case .calculate:
             do {
-                guard let result = try requests.calculated() else {
-                    return
-                }
-                requests = result
+                requests = try requests.calculated()
+                isClear = false
             } catch let error as CalculatorError {
-                self.error = error
-                requests.removeAll()
+                switch error {
+                case .undefined:
+                    self.error = error
+                    requests.removeAll()
+                    isClear = false
+                case .invalidFormula:
+                    break
+                }
             } catch {
                 fatalError("Error: \(error.localizedDescription)")
             }
@@ -212,6 +221,7 @@ final class CalculatorEngine {
             if case .term = requests.last {
                 requests.removeLast()
             }
+            isClear = false
         case .delete:
             switch requests.last {
             case var .term(value):
@@ -225,6 +235,9 @@ final class CalculatorEngine {
                 requests.removeLast()
             case .none:
                 return
+            }
+            if requests.isEmpty {
+                isClear = false
             }
         }
     }
