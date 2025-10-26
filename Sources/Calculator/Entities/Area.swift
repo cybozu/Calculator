@@ -6,10 +6,10 @@ enum Area {
     case rightSide
 
     init(rowIndex: Int, rowLast: Bool) {
-        self = if rowIndex == .zero {
-            .upperSide
-        } else if rowLast {
+        self = if rowLast {
             .rightSide
+        } else if rowIndex == .zero {
+            .upperSide
         } else {
             .main
         }
