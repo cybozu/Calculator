@@ -25,5 +25,7 @@ final class ExampleUITests: XCTestCase {
         calcPicker.buttons["calculateButton"].tap()
 
         try await Task.sleep(for: .seconds(1.5))
+
+        calcPicker.buttons["allClearButton"].tap()
     }
 }
