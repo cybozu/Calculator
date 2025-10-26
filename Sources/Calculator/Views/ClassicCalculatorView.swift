@@ -28,7 +28,7 @@ struct ClassicCalculatorView: View {
                 width: width
             )
             Grid(horizontalSpacing: spacing, verticalSpacing: spacing) {
-                ForEach(configuration.rows.enumerated(), id: \.element.id) { offset, row in
+                ForEach(Array(configuration.rows.enumerated()), id: \.element.id) { offset, row in
                     GridRow {
                         ForEach(row.cells) { cell in
                             Button {
