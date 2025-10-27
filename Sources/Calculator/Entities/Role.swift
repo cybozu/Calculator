@@ -1,11 +1,13 @@
 import SwiftUI
 
+/// A type that represents the calculation role.
 public enum Role: Sendable {
     case number(Int)
     case period
     case `operator`(Operator)
     case command(Command)
 
+    /// A text describing the content of calculation role.
     public var text: Text {
         switch self {
         case let .number(value):

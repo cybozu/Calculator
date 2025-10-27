@@ -10,6 +10,10 @@ Calculator is a Swift package that provides an inline calculator with SwiftUI AP
 - Written in Swift 6.2
 - Compatible with iOS 26.0+, macOS 15.0+
 
+## Documentation
+
+[Latest (Swift-DocC)](https://cybozu.github.io/Calculator/documentation/calculator/)
+
 ## Usage
 
 If you want to use the classic preset calculator:

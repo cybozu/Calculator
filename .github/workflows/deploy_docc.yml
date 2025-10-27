@@ -1,0 +1,56 @@
+name: Deploy DocC
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - README.md
+      - .gitignore
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: macos-26
+    env:
+      DEVELOPER_DIR: "/Applications/Xcode_26.0.1.app/Contents/Developer"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build DocC
+        run: |
+          xcodebuild docbuild \
+            -scheme Calculator \
+            -destination "generic/platform=iOS" \
+            -derivedDataPath DerivedData
+
+          $(xcrun --find docc) process-archive \
+             transform-for-static-hosting DerivedData/Build/Products/Debug-*/Calculator.doccarchive \
+             --output-path ./docs \
+             --hosting-base-path "Calculator"
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: docs
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: "https://cybozu.github.io/Calculator/documentation/calculator/"
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

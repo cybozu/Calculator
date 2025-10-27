@@ -1,5 +1,6 @@
 import SwiftUI
 
+/// A type that represents the calculation operator.
 public enum Operator: String, Sendable, CaseIterable, CustomStringConvertible {
     case addition
     case subtraction
@@ -7,6 +8,7 @@ public enum Operator: String, Sendable, CaseIterable, CustomStringConvertible {
     case division
     case modulus
 
+    /// A string that represents the calculation operator.
     public var description: String {
         switch self {
         case .addition:
@@ -22,6 +24,7 @@ public enum Operator: String, Sendable, CaseIterable, CustomStringConvertible {
         }
     }
 
+    /// An Image that represents the calculation operator.
     public var image: Image {
         switch self {
         case .addition:
