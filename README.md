@@ -2,6 +2,12 @@
 
 Calculator is a Swift package that provides an inline calculator with SwiftUI API.
 
+[![Github forks](https://img.shields.io/github/forks/cybozu/Calculator)](https://github.com/cybozu/Calculator/network/members)
+[![Github stars](https://img.shields.io/github/stars/cybozu/Calculator)](https://github.com/cybozu/Calculator/stargazers)
+[![Github issues](https://img.shields.io/github/issues/cybozu/Calculator)](https://github.com/cybozu/Calculator/issues)
+[![Github release](https://img.shields.io/github/v/release/cybozu/Calculator)](https://github.com/cybozu/Calculator/releases)
+[![Github license](https://img.shields.io/github/license/cybozu/Calculator)](https://github.com/cybozu/Calculator/blob/main/LICENSE)
+
 <img width="352" height="352" src="https://github.com/user-attachments/assets/2fd08868-84b2-4ff0-82a3-ef46be32986e" />
 
 ## Requirements
