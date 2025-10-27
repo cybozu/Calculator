@@ -1,5 +1,6 @@
 import SwiftUI
 
+/// A type that represents the calculation command.
 public enum Command: String, Sendable, CaseIterable {
     case plusMinus
     case calculate
@@ -7,6 +8,7 @@ public enum Command: String, Sendable, CaseIterable {
     case clear
     case delete
 
+    /// A text describing the calculation command.
     public var text: Text {
         switch self {
         case .plusMinus:
