@@ -2,8 +2,11 @@ import SwiftUI
 
 /// The properties of a calculator view.
 public struct CalculatorStyleConfiguration {
+    /// The string value representing an expression or calculation result.
     public var value: String
+    /// An array of row information.
     public var rows: [Row]
+    /// The closure to send the role of each calculator button to the calculation engine.
     public var trigger: (Role) -> Void
 }
 
